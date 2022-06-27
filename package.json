@@ -1,16 +1,24 @@
 {
-  "name": "src",
+  "name": "image-processing-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run build && npm run jasmine",
     "build": "npx tsc",
     "jasmine": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nupurchauhan6/image-processing-api.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nupurchauhan6/image-processing-api/issues"
+  },
+  "homepage": "https://github.com/nupurchauhan6/image-processing-api#readme",
   "devDependencies": {
     "@types/jasmine": "^4.0.3",
     "@types/node": "^18.0.0",
@@ -18,7 +26,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "jasmin": "^0.0.2",
+    "jasmine": "^4.2.1",
     "jasmine-spec-reporter": "^7.0.0"
   }
 }
