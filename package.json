@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm run build && npm run jasmine",
     "build": "npx tsc",
-    "jasmine": "jasmine"
+    "jasmine": "jasmine",
+    "lint": "tslint 'src/**/*.ts?(x)'"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "@types/jasmine": "^4.0.3",
     "@types/node": "^18.0.0",
     "ts-node": "^10.8.1",
+    "tslint": "^6.1.3",
     "typescript": "^4.7.4"
   },
   "dependencies": {
