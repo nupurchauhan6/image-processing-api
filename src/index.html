@@ -3,17 +3,130 @@
 
 <head>
     <title>Image Processing</title>
+    <style>
+        body {
+            margin: 100px;
+            background-color: aliceblue;
+            font-family: monospace;
+            font-size: larger;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            text-align: left;
+            padding: 20px;
+        }
+
+        th {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        a:link,
+        a:visited {
+            background-color: white;
+            color: black;
+            border: 2px solid #2196f3;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            color: #2196f3;
+        }
+
+        h4,
+        p {
+            text-align: center;
+        }
+
+        a:hover,
+        a:active {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 100%;
+            display: inline-flex;
+        }
+
+        .container {
+            padding: 2px 16px;
+            margin: 10px;
+            width: 25%;
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 
 <body>
 
     <h1>This is a Project 1: Image Processing API </h1>
-    <h2>Supported Images are:</h2>
-    <h4>Default Size is 1000 X 500</h4>
-    <p>encenadaport.jpg <a href="/api/images/?name=encenadaport.jpg&width=1000&height=500">Link</a></p>
-    <p>fjord.jpg <a href="/api/images/?name=fjord.jpg&width=1000&height=500">Link</a></p>
-    <p>icelandwaterfall.jpg <a href="/api/images/?name=icelandwaterfall.jpg&width=1000&height=500">Link</a></p>
-    <p>santamonica.jpg <a href="/api/images/?name=santamonica.jpg&width=1000&height=500">Link</a></p>
+    <h4>**** Default Parameters ****</h4>
+    <div class="card">
+        <div class="container">
+            <h4><b>Width</b></h4>
+            <p>1000</p>
+        </div>
+        <div class="container">
+            <h4><b>Height</b></h4>
+            <p>500</p>
+        </div>
+        <div class="container">
+            <h4><b>Left</b></h4>
+            <p>10</p>
+        </div>
+        <div class="container">
+            <h4><b>Top</b></h4>
+            <p>10</p>
+        </div>
+    </div>
+    <h4>**** Supported Images ****</h4>
+    <table>
+        <tr>
+            <th>Image Name</th>
+            <th>Resize</th>
+            <th>Crop</th>
+        </tr>
+        <tr>
+            <td>encenadaport.jpg</td>
+            <td><a href="/api/images/resize/?name=encenadaport.jpg&width=1000&height=500">Resize</a></td>
+            <td><a href="/api/images/crop/?name=encenadaport.jpg&width=1000&height=500&left=10&top=10">Crop</a>
+        </tr>
+        <tr>
+            <td>fjord.jpg</td>
+            <td><a href="/api/images/resize/?name=fjord.jpg&width=1000&height=500">Resize</a></td>
+            <td><a href="/api/images/crop/?name=fjord.jpg&width=1000&height=500&left=10&top=10">Crop</a></td>
+        </tr>
+        <tr>
+            <td>icelandwaterfall.jpg</td>
+            <td> <a href="/api/images/resize/?name=icelandwaterfall.jpg&width=1000&height=500">Resize</a></td>
+            <td> <a href="/api/images/crop/?name=icelandwaterfall.jpg&width=1000&height=500&left=10&top=10">Crop</a>
+            </td>
+        </tr>
+        <tr>
+            <td>santamonica.jpg</td>
+            <td> <a href="/api/images/resize/?name=santamonica.jpg&width=1000&height=500">Resize</a></td>
+            <td> <a href="/api/images/crop/?name=santamonica.jpg&width=1000&height=500&left=10&top=10">Crop</a></td>
+        </tr>
+    </table>
+
 
 </body>
 
