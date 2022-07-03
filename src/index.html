@@ -5,7 +5,8 @@
     <title>Image Processing</title>
     <style>
         body {
-            margin: 100px;
+            margin-left: 100px;
+            margin-right: 100px;
             background-color: aliceblue;
             font-family: monospace;
             font-size: larger;
@@ -72,62 +73,90 @@
             width: 25%;
             background-color: #dddddd;
         }
+
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        .section {
+            border-radius: 2px;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 5px 1px #2196f3;
+            transition: 0.3s;
+            padding: 20px;
+        }
     </style>
 </head>
 
 <body>
 
-    <h1>This is a Project 1: Image Processing API </h1>
-    <h4>**** Default Parameters ****</h4>
-    <div class="card">
-        <div class="container">
-            <h4><b>Width</b></h4>
-            <p>1000</p>
-        </div>
-        <div class="container">
-            <h4><b>Height</b></h4>
-            <p>500</p>
-        </div>
-        <div class="container">
-            <h4><b>Left</b></h4>
-            <p>10</p>
-        </div>
-        <div class="container">
-            <h4><b>Top</b></h4>
-            <p>10</p>
+    <h1>This is Project 1: Image Processing API </h1>
+    <div class="section">
+        <h4>**** Default Parameters ****</h4>
+        <div class="card">
+
+            <div class="container">
+                <h4><b>Width</b></h4>
+                <p>1000</p>
+            </div>
+            <div class="container">
+                <h4><b>Height</b></h4>
+                <p>500</p>
+            </div>
+            <div class="container">
+                <h4><b>Left</b></h4>
+                <p>10</p>
+            </div>
+            <div class="container">
+                <h4><b>Top</b></h4>
+                <p>10</p>
+            </div>
         </div>
     </div>
-    <h4>**** Supported Images ****</h4>
-    <table>
-        <tr>
-            <th>Image Name</th>
-            <th>Resize</th>
-            <th>Crop</th>
-        </tr>
-        <tr>
-            <td>encenadaport.jpg</td>
-            <td><a href="/api/images/resize/?name=encenadaport.jpg&width=1000&height=500">Resize</a></td>
-            <td><a href="/api/images/crop/?name=encenadaport.jpg&width=1000&height=500&left=10&top=10">Crop</a>
-        </tr>
-        <tr>
-            <td>fjord.jpg</td>
-            <td><a href="/api/images/resize/?name=fjord.jpg&width=1000&height=500">Resize</a></td>
-            <td><a href="/api/images/crop/?name=fjord.jpg&width=1000&height=500&left=10&top=10">Crop</a></td>
-        </tr>
-        <tr>
-            <td>icelandwaterfall.jpg</td>
-            <td> <a href="/api/images/resize/?name=icelandwaterfall.jpg&width=1000&height=500">Resize</a></td>
-            <td> <a href="/api/images/crop/?name=icelandwaterfall.jpg&width=1000&height=500&left=10&top=10">Crop</a>
-            </td>
-        </tr>
-        <tr>
-            <td>santamonica.jpg</td>
-            <td> <a href="/api/images/resize/?name=santamonica.jpg&width=1000&height=500">Resize</a></td>
-            <td> <a href="/api/images/crop/?name=santamonica.jpg&width=1000&height=500&left=10&top=10">Crop</a></td>
-        </tr>
-    </table>
+
+    <div class="section">
+        <h4>**** Currently Supported Images ****</h4>
+        <table>
+            <tr>
+                <th>Image Name</th>
+                <th>Resize</th>
+                <th>Crop</th>
+            </tr>
+            <tr>
+                <td>encenadaport.jpg</td>
+                <td><a href="/api/images/resize/?name=encenadaport.jpg&width=1000&height=500">Resize</a></td>
+                <td><a href="/api/images/crop/?name=encenadaport.jpg&width=1000&height=500&left=10&top=10">Crop</a>
+            </tr>
+            <tr>
+                <td>fjord.jpg</td>
+                <td><a href="/api/images/resize/?name=fjord.jpg&width=1000&height=500">Resize</a></td>
+                <td><a href="/api/images/crop/?name=fjord.jpg&width=1000&height=500&left=10&top=10">Crop</a></td>
+            </tr>
+            <tr>
+                <td>icelandwaterfall.jpg</td>
+                <td> <a href="/api/images/resize/?name=icelandwaterfall.jpg&width=1000&height=500">Resize</a></td>
+                <td> <a href="/api/images/crop/?name=icelandwaterfall.jpg&width=1000&height=500&left=10&top=10">Crop</a>
+                </td>
+            </tr>
+            <tr>
+                <td>santamonica.jpg</td>
+                <td> <a href="/api/images/resize/?name=santamonica.jpg&width=1000&height=500">Resize</a></td>
+                <td> <a href="/api/images/crop/?name=santamonica.jpg&width=1000&height=500&left=10&top=10">Crop</a></td>
+            </tr>
+        </table>
+    </div>
 
 
+    <div class="section">
+        <h4>**** Upload New File ****</h4>
+        <form action="/api/files/uploadFile" enctype="multipart/form-data" method="POST">
+            <input type="file" accept="image/*" id="myFile" name="myFile" required/>
+            <input type="submit" />
+        </form>
+    </div>
 </body>
 
 </html>
