@@ -24,8 +24,8 @@ const images = express.Router();
 images.use(ImageRequestLoggerMiddleware);
 
 images.get("/resize", (req: express.Request, res: express.Response) => {
-  const width = parseInt(req.query.width as string);
-  const height = parseInt(req.query.height as string);
+  const width = Number(req.query.width as string);
+  const height = Number(req.query.height as string);
   sharp(res.locals.filename)
     .resize(width, height)
     .png()
@@ -41,12 +41,12 @@ images.get("/resize", (req: express.Request, res: express.Response) => {
 });
 
 images.get("/crop", (req: express.Request, res: express.Response) => {
-  const width = parseInt(req.query.width as string);
-  const height = parseInt(req.query.height as string);
-  const left = parseInt(req.query.left as string);
-  const top = parseInt(req.query.top as string);
+  const width = Number(req.query.width as string);
+  const height = Number(req.query.height as string);
+  const left = Number(req.query.left as string);
+  const top = Number(req.query.top as string);
   sharp(res.locals.filename)
-    .extract({ width: width, height: height, left: left, top: top })
+    .extract({ width, height, left, top })
     .png()
     .toBuffer()
     .then((data) => {

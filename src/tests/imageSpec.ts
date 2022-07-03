@@ -1,6 +1,5 @@
 import express from "express";
-
-const request = require("request");
+import request from "request";
 
 const correntResizeEndpoint =
   "http://localhost:3001/api/images/resize/?name=fjord.jpg&width=1000&height=500";
@@ -14,44 +13,32 @@ const incorrentEndpoint =
 const notFoundEndpoint =
   "http://localhost:3001/api/images/?name=fjord.jpg&width=1000&height=500";
 
-describe("Testing Images API", function () {
-  it("should return 200 response code", function (done) {
-    request.get(
-      correntResizeEndpoint,
-      function (error: string, response: express.Response) {
-        expect(response.statusCode).toEqual(200);
-        done();
-      }
-    );
+describe("Testing Images API", () => {
+  it("should return 200 response code", (done) => {
+    request.get(correntResizeEndpoint, (error, response) => {
+      expect(response.statusCode).toEqual(200);
+      done();
+    });
   });
 
-  it("should return 200 response code", function (done) {
-    request.get(
-      correntCropEndpoint,
-      function (error: string, response: express.Response) {
-        expect(response.statusCode).toEqual(200);
-        done();
-      }
-    );
+  it("should return 200 response code", (done) => {
+    request.get(correntCropEndpoint, (error, response) => {
+      expect(response.statusCode).toEqual(200);
+      done();
+    });
   });
 
-  it("should return 500 response code", function (done) {
-    request.get(
-      incorrentEndpoint,
-      function (error: string, response: express.Response) {
-        expect(response.statusCode).toEqual(500);
-        done();
-      }
-    );
+  it("should return 500 response code", (done) => {
+    request.get(incorrentEndpoint, (error, response) => {
+      expect(response.statusCode).toEqual(500);
+      done();
+    });
   });
 
-  it("should return 404 response code", function (done) {
-    request.get(
-      notFoundEndpoint,
-      function (error: string, response: express.Response) {
-        expect(response.statusCode).toEqual(404);
-        done();
-      }
-    );
+  it("should return 404 response code", (done) => {
+    request.get(notFoundEndpoint, (error, response) => {
+      expect(response.statusCode).toEqual(404);
+      done();
+    });
   });
 });
