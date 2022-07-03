@@ -4,7 +4,7 @@ import files from "./api/file";
 
 const routes = express.Router();
 
-routes.use('/images', images);
-routes.use('/files', files);
+routes.use("/images", images);
+routes.use("/files", files);
 
 export default routes;
