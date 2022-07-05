@@ -1,6 +1,6 @@
 import express from "express";
-import sharp from "sharp";
 import path from "path";
+import { resizeImage, cropImage } from "../../utility/imageProcessing";
 
 const ImageRequestLoggerMiddleware = (
   req: express.Request,
@@ -8,55 +8,48 @@ const ImageRequestLoggerMiddleware = (
   next: express.NextFunction
 ) => {
   console.log(`Request to Image Router ${req.url} ${req.method}`);
-  res.locals.filename = path.join(
-    __dirname,
-    "..",
-    "..",
-    "..",
-    "assets",
-    "images",
-    req.query.name as string
-  );
   next();
 };
 
 const images = express.Router();
 images.use(ImageRequestLoggerMiddleware);
 
-images.get("/resize", (req: express.Request, res: express.Response) => {
+images.get("/resize", async (req: express.Request, res: express.Response) => {
   const width = Number(req.query.width as string);
   const height = Number(req.query.height as string);
-  sharp(res.locals.filename)
-    .resize(width, height)
-    .png()
-    .toBuffer()
-    .then((data) => {
-      res.statusCode = 200;
-      res.type("jpg").send(data);
-    })
-    .catch((error) => {
-      res.statusCode = 500;
-      res.send(error.message);
-    });
+
+  const response = await resizeImage(req.query.name as string, width, height);
+  res.statusCode = response.statusCode;
+  if (response.statusCode === 200) {
+    return res.sendFile(
+      path.join(__dirname, "../../../assets", "images", response.body)
+    );
+  } else {
+    return res.send(response.body);
+  }
 });
 
-images.get("/crop", (req: express.Request, res: express.Response) => {
+images.get("/crop", async (req: express.Request, res: express.Response) => {
   const width = Number(req.query.width as string);
   const height = Number(req.query.height as string);
   const left = Number(req.query.left as string);
   const top = Number(req.query.top as string);
-  sharp(res.locals.filename)
-    .extract({ width, height, left, top })
-    .png()
-    .toBuffer()
-    .then((data) => {
-      res.statusCode = 200;
-      res.type("jpg").send(data);
-    })
-    .catch((error) => {
-      res.statusCode = 500;
-      res.send(error.message);
-    });
+
+  const response = await cropImage(
+    req.query.name as string,
+    width,
+    height,
+    left,
+    top
+  );
+  res.statusCode = response.statusCode;
+  if (response.statusCode === 200) {
+    return res.sendFile(
+      path.join(__dirname, "../../../assets", "images", response.body)
+    );
+  } else {
+    return res.send(response.body);
+  }
 });
 
 export default images;
