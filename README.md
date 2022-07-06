@@ -10,7 +10,7 @@ npm run build
 
 npm run start
 
-**To test (the test cases will run successfully only if the server is running)**
+**To test**
 
 npm run test
 

@@ -37,7 +37,7 @@ export const cropImage = async (
   height: number,
   left: number,
   top: number
-) => {
+): Promise<IResonse> => {
   try {
     const newName = [path.parse(filename).name, width, height, left, top].join(
       "_"

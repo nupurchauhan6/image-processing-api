@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import { resizeImage, cropImage } from "../../utility/imageProcessing";
+import { resizeImage, cropImage } from "../../utilities/imageProcessing";
 
 const ImageRequestLoggerMiddleware = (
   req: express.Request,
@@ -17,15 +17,15 @@ images.use(ImageRequestLoggerMiddleware);
 images.get("/resize", async (req: express.Request, res: express.Response) => {
   const width = Number(req.query.width as string);
   const height = Number(req.query.height as string);
-
   const response = await resizeImage(req.query.name as string, width, height);
-  res.statusCode = response.statusCode;
   if (response.statusCode === 200) {
-    return res.sendFile(
-      path.join(__dirname, "../../../assets", "images", response.body)
-    );
+    return res
+      .status(response.statusCode)
+      .sendFile(
+        path.join(__dirname, "../../../assets", "images", response.body)
+      );
   } else {
-    return res.send(response.body);
+    return res.status(response.statusCode).send(`${response.body}`);
   }
 });
 
@@ -42,13 +42,14 @@ images.get("/crop", async (req: express.Request, res: express.Response) => {
     left,
     top
   );
-  res.statusCode = response.statusCode;
   if (response.statusCode === 200) {
-    return res.sendFile(
-      path.join(__dirname, "../../../assets", "images", response.body)
-    );
+    return res
+      .status(response.statusCode)
+      .sendFile(
+        path.join(__dirname, "../../../assets", "images", response.body)
+      );
   } else {
-    return res.send(response.body);
+    return res.status(response.statusCode).send(`${response.body}`);
   }
 });
 
